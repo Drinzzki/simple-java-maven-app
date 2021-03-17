@@ -2,7 +2,7 @@ pipeline {
     agent {
         docker {
             image 'maven:3-alpine'
-            args '-v /run/desktop/mnt/host/d/DockerJenkins/.m2:/root/.m2'
+            args '--privileged -v /run/desktop/mnt/host/d/DockerJenkins/.m2:/root/.m2'
         }
     }
     
