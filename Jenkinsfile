@@ -14,6 +14,9 @@ pipeline {
                 sh 'mvn -B -DskipTests clean package'
             }
         }
+        stage ("wait_for_testing") {
+                sh 'sleep 300'
+        }
         stage('Test') {
             steps {
                 sh 'mvn test'
