@@ -1,15 +1,17 @@
 pipeline {
     agent {
         docker {
-            image 'maven:3-alpine' 
-            args '-v /run/desktop/mnt/host/d/DockerJenkins/.m2:/root/.m2' 
-            //args '-v /home/ferdhz/.m2:/root/.m2' 
+            image 'maven:3.8.1-adoptopenjdk-11'
+            args '-v /run/desktop/mnt/host/d/DockerJenkins/.m2:/root/.m2'
         }
     }
+    options {
+        skipStagesAfterUnstable()
+    }
     stages {
-        stage('Build') { 
+        stage('Build') {
             steps {
-                sh 'mvn -B -DskipTests clean package' 
+                sh 'mvn -B -DskipTests clean package'
             }
         }
         stage('Test') {
@@ -22,9 +24,9 @@ pipeline {
                 }
             }
         }
-         stage('Deliver') {
+        stage('Deliver') { 
             steps {
-                sh './jenkins/scripts/deliver.sh'
+                sh './jenkins/scripts/deliver.sh' 
             }
         }
     }
