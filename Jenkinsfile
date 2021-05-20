@@ -3,7 +3,8 @@ pipeline {
         docker {
             image 'maven:3.8.1-adoptopenjdk-11'
            // args '-v /run/desktop/mnt/host/d/DockerJenkins/.m2:/root/.m2'
-            args '-v /home/ferdhz/.m2:/root/.m2'
+           // args '-v /home/ferdhz/.m2:/root/.m2'
+            args '-v /aldrin/.m2:/root/.m2'
         }
     }
     options {
